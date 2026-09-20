@@ -1,18 +1,13 @@
 import { Button } from '@/components/ui/button'
-import { cn } from 'cn'
-import React from 'react'
+import prisma from '@/lib/db'
 
-function page() {
+async function page() {
   const someting = true
+  const users = await prisma.user.findMany()
+  console.log(users)
   return (
-    <div
-      className={cn(
-        "text-2xl",
-        someting == true && "text-9xl text-red-700 border-amber-200",
-      )}
-    >
-      page
-      <Button>Hello</Button>
+     <div>
+      <Button>{JSON.stringify(users)}</Button>
     </div>
   );
 }
